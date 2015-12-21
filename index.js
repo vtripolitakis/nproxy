@@ -28,7 +28,7 @@ app.get('/fetch/:link', function (req,res) {
 		    body += chunk;
 		  });
 		  tmpRes.on('end', function () {
-		    	res.send(link+body);		    	
+		    	res.send(body);		    	
 		  });
 	});
 
