@@ -1,14 +1,17 @@
 var express = require('express');
 var app = express();
-
-app.set('port', (process.env.PORT || 5000));
-
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
+var options = {
+      key: fs.readFileSync('./privatekey.pem', 'utf8'),
+      cert: fs.readFileSync('./certificate.pem', 'utf8')
+   };
 
 
 app.get('/', function (req, res) {
   res.send('hello');
 });
-
 
 app.get('/fetch/:link', function (req,res) {
 	var link = req.params.link;
@@ -34,6 +37,5 @@ app.get('/fetch/:link', function (req,res) {
 
 });
 
-
-app.listen((process.env.PORT || 5000),function () {
-});
+http.createServer(app).listen(5000);
+https.createServer(options, app).listen(8080);
