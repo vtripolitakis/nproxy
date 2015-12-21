@@ -10,8 +10,8 @@ app.get('/', function (req, res) {
 });
 
 
-app.get('/fetch', function (req,res) {
-	var link = req.query.link;
+app.get('/fetch/:link', function (req,res) {
+	var link = req.params.link;
 	var out='';
 	var request = require('request');
 	var tmpReq = request(link);
@@ -28,7 +28,7 @@ app.get('/fetch', function (req,res) {
 		    body += chunk;
 		  });
 		  tmpRes.on('end', function () {
-		    	res.send(body);		    	
+		    	res.send(link+body);		    	
 		  });
 	});
 

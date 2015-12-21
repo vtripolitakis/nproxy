@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "keywords": [
-    "proxy",
+    "proxy"
   ],
   "author": "Evangelos Tripolitakis",
   "license": "MIT",
