@@ -25,12 +25,14 @@ app.get('/fetch/:link', function (req,res) {
 	});
 
 	tmpReq.on('response', function (tmpRes) {
+	  var tmpHeaders = tmpRes.headers;
 	  if (tmpRes.statusCode != 200) return this.emit('error', new Error('Bad status code'));	  	
 		var body = '';
 		  tmpRes.on('data', function (chunk) {
 		    body += chunk;
 		  });
 		  tmpRes.on('end', function () {
+		  		res.set(tmpHeaders);
 		    	res.send(body);		    	
 		  });
 	});
